@@ -1,4 +1,5 @@
 package org.test;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -7,7 +8,6 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.*;
 
 import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
@@ -17,21 +17,22 @@ public class Main {
             .toFormatter();
 
     public static void main(String[] args) throws IOException {
+        File jsonFile = new File("src\\main\\resources\\format.json");
         String mostPopularCategories = getPopularCategories(
-                "src\\main\\resources\\package.json",
+                jsonFile,
                 "2023-12-1",
                 "2023-12-31"
         );
         System.out.printf("Самые популярные категории товаров в период с 1 по 31 декабря 2023 года:\n%s", mostPopularCategories);
     }
 
-    public static String getPopularCategories(String jsonFilePath, String startDate, String endDate) throws IOException {
+    public static String getPopularCategories(File jsonFile, String startDate, String endDate) throws IOException {
         LocalDate startDateObj = LocalDate.parse(startDate, dateFormatter);
         LocalDate endDateObj = LocalDate.parse(endDate, dateFormatter);
 
         Map<String, Integer> categoriesMap = new HashMap<>();
 
-        try (FileReader reader = new FileReader(jsonFilePath)) {
+        try (FileReader reader = new FileReader(jsonFile)) {
             JsonArray purchases = JsonParser.parseReader(reader).getAsJsonArray();
 
             purchases.forEach(purchaseElement -> {

@@ -1,6 +1,5 @@
 package com.krok.testtask;
 
-import UsefulUtils.UsefulTools;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.krok.testtask.orderDetails.Order;

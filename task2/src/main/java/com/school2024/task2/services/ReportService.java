@@ -17,16 +17,16 @@ import lombok.extern.log4j.Log4j2;
 @Service
 @Log4j2
 public class ReportService {
-    public List<String> createPurchaseReportWithMostPopularItemsBetween1And31December(List<PurchaseRequest> purchasesRequest) {
-        List<PurchaseRequest> filteredByDatePurchases = filterByDateBetween1And31December(purchasesRequest);
+    public List<String> createPurchaseReportWithMostPopularItemsBetween1And31December(List<PurchaseRequest> purchases) {
+        List<PurchaseRequest> filteredByDatePurchases = filterByDateBetween1And31December(purchases);
 
-        List<String> purchaseReport = getMostPopularCategories(filteredByDatePurchases);
+        List<String> purchaseReport = findMostPopularCategoriesInPurchases(filteredByDatePurchases);
 
         return sortPurchaseReport(purchaseReport);
     }
 
-    private List<PurchaseRequest> filterByDateBetween1And31December(List<PurchaseRequest> purchasesRequest) {
-        return purchasesRequest.stream()
+    private List<PurchaseRequest> filterByDateBetween1And31December(List<PurchaseRequest> purchases) {
+        return purchases.stream()
             .filter(x -> isPreNewYearDate(x.getOrderedAt()))
             .collect(Collectors.toList());
     }
@@ -40,17 +40,17 @@ public class ReportService {
         return false;
     }
 
-    private List<String> getMostPopularCategories(List<PurchaseRequest> purchaseRequests) {
-        Map<String, Integer> tableOfCategoryFrequency = createTableOfCategoryFrequencyFromPurchases(purchaseRequests);
+    private List<String> findMostPopularCategoriesInPurchases(List<PurchaseRequest> purchases) {
+        Map<String, Integer> tableOfCategoryFrequency = createTableOfCategoryFrequencyFromPurchases(purchases);
 
-        Integer maxPurchaseFrequency = findMaxPurchaseFrequencyInFrequencyTable(tableOfCategoryFrequency);
+        Integer maxCategoryFrequency = findMaxCategoryFrequencyInCategoryFrequencyTable(tableOfCategoryFrequency);
 
-        return findMostPopularCategoriesByFrequency(tableOfCategoryFrequency, maxPurchaseFrequency);
+        return findCategoriesByFrequency(tableOfCategoryFrequency, maxCategoryFrequency);
     }
 
-    private Map<String, Integer> createTableOfCategoryFrequencyFromPurchases(List<PurchaseRequest> purchaseRequests) {
+    private Map<String, Integer> createTableOfCategoryFrequencyFromPurchases(List<PurchaseRequest> purchasesRequest) {
         Map<String, Integer> tableOfCategoryFrequency = new HashMap<>();
-        for (PurchaseRequest purchaseRequest: purchaseRequests) {
+        for (PurchaseRequest purchaseRequest: purchasesRequest) {
             for (Item item: purchaseRequest.getItems()) {
                 String categoryName = item.getCategory().getName();
                 if (tableOfCategoryFrequency.get(categoryName) == null) {
@@ -63,7 +63,7 @@ public class ReportService {
         return tableOfCategoryFrequency;
     }
 
-    private Integer findMaxPurchaseFrequencyInFrequencyTable(Map<String, Integer> tableOfCategoryFrequency) {
+    private Integer findMaxCategoryFrequencyInCategoryFrequencyTable(Map<String, Integer> tableOfCategoryFrequency) {
         Integer maxPurchaseFrequency = tableOfCategoryFrequency.entrySet().stream()
                 .max(Map.Entry.comparingByValue())
                 .map(Map.Entry::getValue)
@@ -72,7 +72,7 @@ public class ReportService {
         return maxPurchaseFrequency;
     } 
 
-    private List<String> findMostPopularCategoriesByFrequency(Map<String, Integer> tableOfCategoryFrequency, Integer maxPurchaseFrequency) {
+    private List<String> findCategoriesByFrequency(Map<String, Integer> tableOfCategoryFrequency, Integer maxPurchaseFrequency) {
         return tableOfCategoryFrequency.entrySet().stream()
                 .filter(x -> x.getValue().equals(maxPurchaseFrequency))
                 .map(Map.Entry::getKey)

@@ -14,7 +14,12 @@ public class App
 {
     public static void main( String[] args )
     {
-        File file = new File("src/main/resources/format.json");
-        System.out.println(AnswerParser.generateAnswer(file));
+        if(args.length < 1) {
+            System.out.println("Usage: java Main <path_to_format.json>");
+            System.exit(1);
+        }
+        String filePath = args[0];
+        System.out.println(
+                AnswerParser.generateAnswer(new File(filePath)));
     }
 }

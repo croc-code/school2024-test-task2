@@ -14,7 +14,7 @@ public class Task {
 
     public static void main(String[] args){
 
-        File file = new File(".").toPath().toAbsolutePath().getParent().resolve("application/src/main/resources/input.json").toFile();
+        File file = new File("./src/main/resources/input.json");
 
         try(Reader reader = new FileReader(file)){
 

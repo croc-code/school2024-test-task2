@@ -1,0 +1,68 @@
+[
+  {
+    "ordered_at": "2023-12-14T11:10:29.408",
+    "items": [
+      {
+        "id": "b250ed3c-25d7-462b-9aae-4cae6db4e1e5",
+        "name": "Игровая приставка Sony Play Station 5",
+        "category": {
+          "id": "e3386407-3918-422a-b128-ad23a2ddf9c3",
+          "name": "Бытовая техника"
+        }
+      },
+      {
+        "id": "bd4395cc-6602-4206-bc7a-01a8c5b1eef9",
+        "name": "Набор уходовых средств Obagi",
+        "category": {
+          "id": "0bf9cb4d-30db-4440-a9dc-37edb0e78684",
+          "name": "Средства для ухода за собой"
+        }
+      },
+      {
+        "id": "3975d9a4-1adc-4eab-baf1-55b59e78136d",
+        "name": "Богатый папа, бедный папа",
+        "category": {
+          "id": "8b9bb003-6d90-43c4-9158-cfeca24b20f8",
+          "name": "Книги"
+        }
+      }
+    ]
+  },
+  {
+    "ordered_at": "2023-12-21T18:31:21.349",
+    "items": [
+      {
+        "id": "e188a4ce-d1c9-45b9-b757-4e9bcfc7281a",
+        "name": "Телевизор LG C3",
+        "category": {
+          "id": "e3386407-3918-422a-b128-ad23a2ddf9c3",
+          "name": "Бытовая техника"
+        }
+      },
+      {
+        "id": "a57548eb-9a1d-4d2c-8397-9d0c2c60fce6",
+        "name": "Лонгслив SUPREME x CROC",
+        "category": {
+          "id": "593d36d5-1d8b-4237-beb4-e1c8e361c335",
+          "name": "Одежда"
+        }
+      },
+      {
+        "id": "b8822fc1-b442-430c-9120-a3a1cedcb573",
+        "name": "Набор зимней резины Pirelli",
+        "category": {
+          "id": "3d400f36-2766-40dc-95dd-f82cf3eef6f3",
+          "name": "Автозапчасти"
+        }
+      },
+      {
+        "id": "b8822fc1-b442-430c-9120-a3a1cedcb573",
+        "name": "Набор зимней резины Pirelli",
+        "category": {
+          "id": "3d400f36-2766-40dc-95dd-f82cf3eef6f3",
+          "name": "Автозапчасти"
+        }
+      }
+    ]
+  }
+]

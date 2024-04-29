@@ -48,6 +48,10 @@ public class Task {
                 popularCategories.add(polledLastEntry.getKey());
             }
 
+            if(popularCategories.size() > 1){
+                popularCategories.sort(String::compareTo);
+            }
+
             out.print("{«categories»: [");
             for (int i = 0; i < popularCategories.size(); i++) {
                 out.print("\"" + popularCategories.get(i) + "\"");

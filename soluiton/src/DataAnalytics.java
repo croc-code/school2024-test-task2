@@ -38,6 +38,8 @@ public class DataAnalytics {
                 popularCategoriesNames.add(entry.getKey());
             }
         }
+        //Сортирую названия(если их несколько) в алфавитном порядке
+        Collections.sort(popularCategoriesNames);
         // Инициализирую переменную в которую записываю полученные категории в соответствии с требованиями
         var result = "{\"months\": " + objectMapper.writeValueAsString(popularCategoriesNames) + "}";
         // Возвращаю результат
